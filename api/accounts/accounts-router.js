@@ -6,6 +6,9 @@ const router = express.Router();
 ///// MIDDLEWARE /////
 // write a middleware to validate ID. 
 // Apply this middleware to the post, put, and delete functions.
+const validatePost = (req, res, next) => {
+    next();
+};
 
 ///// ENDPOINTS /////
 router.get('/', async (req, res) => {
@@ -15,7 +18,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
-})
+});
 
 
 router.get('/:id', async (req, res) => {
@@ -26,10 +29,18 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
-})
+});
 
 
-// router.post()
+router.post('/', validatePost, async (req, res) => {
+    try { 
+        const info = req.body
+        const account = await Account.createAccount(info)
+        res.json(account)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
 
 
 // router.put()

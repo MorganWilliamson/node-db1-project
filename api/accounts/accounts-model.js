@@ -7,9 +7,12 @@ module.exports = {
     getById(id) {
         return db('accounts').where({ id }).first()
     },
-    // createAccount(account) {
-
-    // },
+    createAccount(account) {
+        return db('accounts').insert(account)
+            .then(([id]) => {
+                return db('accounts').where('id', id).first()
+            })
+    },
     // updateAccount(id, account) {
 
     // },
