@@ -13,19 +13,30 @@ router.get('/', async (req, res) => {
         const data = await Account.getAllAccounts()
         res.json(data)
     } catch (error) {
-        res.json(500).json({ message: error.message })
+        res.status(500).json({ message: error.message })
     }
 })
 
 
-router.get()
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const account = await Account.getById(id)
+        res.json(account)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
 
 
-router.post()
+// router.post()
 
 
-router.put()
+// router.put()
 
 
-router.delete()
+// router.delete()
 
+
+
+module.exports = router;

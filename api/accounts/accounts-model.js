@@ -4,9 +4,9 @@ module.exports = {
     getAllAccounts() {
         return db('accounts');
     },
-    // getById(id) {
-
-    // },
+    getById(id) {
+        return db('accounts').where({ id }).first()
+    },
     // createAccount(account) {
 
     // },
