@@ -56,7 +56,15 @@ router.put('/:id', validatePost, async (req, res) => {
 })
 
 
-// router.delete()
+router.delete('/:id', validatePost, async (req, res) => {
+    try {
+        const { id } = req.params
+        await Account.deleteAccount(id)
+        res.json({ message: `Account number ${id} has been deleted.` })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+});
 
 
 

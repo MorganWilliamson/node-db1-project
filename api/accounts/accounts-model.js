@@ -16,7 +16,7 @@ module.exports = {
     updateAccount(id, account) {
         return db('accounts').where('id', id).update(account)
     },
-    // deleteAccount(id) {
-
-    // }
+    deleteAccount(id) {
+        return db('accounts').where('id', id).del()
+    }
 }
